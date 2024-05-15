@@ -4,11 +4,17 @@ import calculate from './calculations.js';
 let lastNumber, newNumber, operator;
 let outputField = document.querySelector(".output")
 let acButton = document.querySelector("#AC");
-let zeroButton = document.querySelector("#0");
+let zeroButton = document.querySelector("#zero");
 
 function resetData() {
     lastNumber = newNumber = operator = undefined;
 }
+
+
+function checkOutputSize() {
+    return outputField.textContent.length < 11 ? true : false
+}
+
 
 
 acButton.addEventListener("click", () => {
@@ -17,8 +23,7 @@ acButton.addEventListener("click", () => {
 })
 
 zeroButton.addEventListener("click", () => {
-    if (!outputField.textContent === '0') {
-        outputField.textContent = outputField.textContent.concat('0');
+    if (checkOutputSize() && outputField.textContent !== '0') {
+        outputField.textContent += '0';
     }
-    alert('test');
 })
