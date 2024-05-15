@@ -26,6 +26,8 @@ html {
 .output {
     height: 3rem;
     background-color: grey;
+    font-size: 2rem;
+    text-align: right;
 }
 
 .input {
