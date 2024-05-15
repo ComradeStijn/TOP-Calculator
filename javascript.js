@@ -17,5 +17,8 @@ acButton.addEventListener("click", () => {
 })
 
 zeroButton.addEventListener("click", () => {
-    if (outputField.textContent === '0') {};
+    if (!outputField.textContent === '0') {
+        outputField.textContent = outputField.textContent.concat('0');
+    }
+    alert('test');
 })
