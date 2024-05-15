@@ -5,22 +5,45 @@ let lastNumber, newNumber, operator;
 let outputField = document.querySelector(".output")
 let acButton = document.querySelector("#AC");
 let zeroButton = document.querySelector("#zero");
+let numberButtons = document.querySelectorAll(".number");
+
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let buttonValue = {
+            'one': '1',
+            'two': '2',
+            'three': '3',
+            'four': '4',
+            'five': '5',
+            'six': '6',
+            'seven': '7',
+            'eight': '8',
+            'nine': '9'
+        }[button.id];
+        if (checkOutputSize() === false) {return};
+        if (outputField.textContent === '0') {
+            outputField.textContent = buttonValue;
+        } else {
+            outputField.textContent += buttonValue;
+        }
+    })
+})
+
 
 function resetData() {
     lastNumber = newNumber = operator = undefined;
 }
-
 
 function checkOutputSize() {
     return outputField.textContent.length < 11 ? true : false
 }
 
 
-
 acButton.addEventListener("click", () => {
     resetData();
     outputField.textContent = "0";
 })
+
 
 zeroButton.addEventListener("click", () => {
     if (checkOutputSize() && outputField.textContent !== '0') {
