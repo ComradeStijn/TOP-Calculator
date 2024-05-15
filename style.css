@@ -13,21 +13,27 @@ button {
 
 html {
     font-size: 50px;
+    background-color: black;
 }
 
 .container {
     width: 11rem;
     outline: 1px solid black;
     margin: 15vh auto;
-    border: 1rem solid darkgrey;
+    border: 1rem solid #1c1c1c;
     background-color: black;
+    border-radius: 2rem;
 }
 
 .output {
     height: 3rem;
-    background-color: grey;
-    font-size: 2rem;
-    text-align: right;
+    background-color: black;
+    color: white;
+    font-size: 1.6rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 .input {
@@ -54,13 +60,29 @@ html {
 
 .button {
     flex: 1 1 1;
-    background-color: yellow;
     border-radius: 1rem;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
+
+.btn-yellow {
+    background-color: #FF9500;
+    color: white;
+}
+
+.btn-grey {
+    background-color: #D4D4D2;
+}
+
+.btn-black {
+    background-color: #505050;
+    color: white;
+}
+
+
 
 .round {
     border-radius: 50%;
