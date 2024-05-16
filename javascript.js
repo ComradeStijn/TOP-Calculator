@@ -6,6 +6,8 @@ let outputField = document.querySelector(".output")
 let acButton = document.querySelector("#AC");
 let zeroButton = document.querySelector("#zero");
 let numberButtons = document.querySelectorAll(".number");
+let dotButton = document.querySelector(".dot");
+
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -20,13 +22,29 @@ numberButtons.forEach((button) => {
             'eight': '8',
             'nine': '9'
         }[button.id];
-        if (checkOutputSize() === false) {return};
-        if (outputField.textContent === '0') {
-            outputField.textContent = buttonValue;
-        } else {
-            outputField.textContent += buttonValue;
+        if (checkOutputSize()) {
+            if (outputField.textContent === '0') {
+                outputField.textContent = buttonValue;
+            } else {
+                outputField.textContent += buttonValue;
+            }
         }
     })
+})
+
+// dotButton.addEventListener("click", () => {
+//     if ()
+// })
+
+acButton.addEventListener("click", () => {
+    resetData();
+    outputField.textContent = "0";
+})
+
+zeroButton.addEventListener("click", () => {
+    if (checkOutputSize() && outputField.textContent !== '0') {
+        outputField.textContent += '0';
+    }
 })
 
 
@@ -39,14 +57,3 @@ function checkOutputSize() {
 }
 
 
-acButton.addEventListener("click", () => {
-    resetData();
-    outputField.textContent = "0";
-})
-
-
-zeroButton.addEventListener("click", () => {
-    if (checkOutputSize() && outputField.textContent !== '0') {
-        outputField.textContent += '0';
-    }
-})
