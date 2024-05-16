@@ -6,7 +6,7 @@ let outputField = document.querySelector(".output")
 let acButton = document.querySelector("#AC");
 let zeroButton = document.querySelector("#zero");
 let numberButtons = document.querySelectorAll(".number");
-let dotButton = document.querySelector(".dot");
+let dotButton = document.querySelector("#dot");
 
 
 numberButtons.forEach((button) => {
@@ -32,9 +32,11 @@ numberButtons.forEach((button) => {
     })
 })
 
-// dotButton.addEventListener("click", () => {
-//     if ()
-// })
+dotButton.addEventListener("click", () => {
+    if (checkOutputSize() && !outputField.textContent.includes('.')) {
+        outputField.textContent += '.';
+    }
+})
 
 acButton.addEventListener("click", () => {
     resetData();
