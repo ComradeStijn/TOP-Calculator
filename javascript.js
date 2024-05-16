@@ -9,7 +9,22 @@ let zeroButton = document.querySelector("#zero");
 let numberButtons = document.querySelectorAll(".number");
 let dotButton = document.querySelector("#dot");
 let operatorButtons = document.querySelectorAll(".operator");
+let equalButton = document.querySelector("#equals");
 
+
+equalButton.addEventListener("click", () => {
+    if (lastNumber === undefined){
+        lastNumber = 0;
+    } else if (operator != undefined) {
+        newNumber = parseFloat(outputField.textContent);
+        lastNumber = parseFloat(calculate(operator, lastNumber, newNumber)
+                    .toString()
+                    .slice(0, 11));
+        outputField.textContent = lastNumber;
+        operator = undefined;
+        lastButtonIsOperator = true;       
+    }
+})
 
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
