@@ -13,8 +13,20 @@ let operatorButtons = document.querySelectorAll(".operator");
 
 operatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        operator = button.id;
-        lastButtonIsOperator = true;
+        if (operator === undefined && !lastButtonIsOperator) {
+            operator = button.id;
+            lastNumber = parseFloat(outputField.textContent);
+        } else if (!lastButtonIsOperator) {
+            newNumber = parseFloat(outputField.textContent);
+            lastNumber = parseFloat(calculate(operator, lastNumber, newNumber)
+                        .toString()
+                        .slice(0, 11));
+            outputField.textContent = lastNumber;
+            operator = button.id;
+        } else {
+            operator = button.id;
+        }
+        lastButtonIsOperator = true;    
     })
 })
 
