@@ -2,12 +2,21 @@
 import calculate from './calculations.js';
 
 let lastNumber, newNumber, operator;
+let lastButtonIsOperator = false;
 let outputField = document.querySelector(".output")
 let acButton = document.querySelector("#AC");
 let zeroButton = document.querySelector("#zero");
 let numberButtons = document.querySelectorAll(".number");
 let dotButton = document.querySelector("#dot");
+let operatorButtons = document.querySelectorAll(".operator");
 
+
+operatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        operator = button.id;
+        lastButtonIsOperator = true;
+    })
+})
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -22,18 +31,24 @@ numberButtons.forEach((button) => {
             'eight': '8',
             'nine': '9'
         }[button.id];
-        if (checkOutputSize()) {
-            if (outputField.textContent === '0') {
-                outputField.textContent = buttonValue;
-            } else {
-                outputField.textContent += buttonValue;
-            }
+        if (lastButtonIsOperator) {
+            outputField.textContent = buttonValue;
+            lastButtonIsOperator = false;
+        } else if (checkOutputSize() && outputField.textContent !== '0') {
+            outputField.textContent += buttonValue;
+        } else if (checkOutputSize()) {
+            outputField.textContent = buttonValue;
         }
     })
 })
 
+
 dotButton.addEventListener("click", () => {
-    if (checkOutputSize() && !outputField.textContent.includes('.')) {
+    console.log(lastButtonIsOperator);
+    if (lastButtonIsOperator) {
+        outputField.textContent = '0.';
+        lastButtonIsOperator = false;
+    } else if (checkOutputSize() && !outputField.textContent.includes('.')) {
         outputField.textContent += '.';
     }
 })
@@ -44,7 +59,10 @@ acButton.addEventListener("click", () => {
 })
 
 zeroButton.addEventListener("click", () => {
-    if (checkOutputSize() && outputField.textContent !== '0') {
+    if (lastButtonIsOperator) {
+        outputField.textContent = '0';
+        lastButtonIsOperator = false;
+    } else if (checkOutputSize() && outputField.textContent !== '0') {
         outputField.textContent += '0';
     }
 })
@@ -52,6 +70,7 @@ zeroButton.addEventListener("click", () => {
 
 function resetData() {
     lastNumber = newNumber = operator = undefined;
+    lastButtonIsOperator = false;
 }
 
 function checkOutputSize() {
